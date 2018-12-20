@@ -2,6 +2,7 @@ package com.adaptionsoft.games.trivia.runner;
 
 import com.adaptionsoft.games.uglytrivia.Output;
 import com.adaptionsoft.games.uglytrivia.TestOutput;
+import com.adaptionsoft.games.uglytrivia.TimeProvider;
 import org.junit.Test;
 
 import java.io.File;
@@ -20,7 +21,8 @@ public class GameRunnerTest {
             File out = new File(System.getProperty("java.io.tmpdir") + File.separator + "trivia" + File.separator + "output2-" + i + ".log");
             FileOutput output = new FileOutput(out);
 
-            GameRunner.run(random, output);
+            TimeProvider timeProvider = new TestTimeProvider();
+            GameRunner.run(random, output, timeProvider);
 
             output.close();
         }
@@ -32,7 +34,8 @@ public class GameRunnerTest {
             Random random = new Random(i);
             Output output = new TestOutput();
 
-            GameRunner.run(random,output);
+            TimeProvider timeProvider = new TestTimeProvider();
+            GameRunner.run(random, output, timeProvider);
 
             String result = output.toString();
 

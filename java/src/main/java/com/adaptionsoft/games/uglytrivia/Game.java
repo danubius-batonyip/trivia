@@ -1,7 +1,7 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Game {
 	
@@ -174,5 +174,22 @@ public class Game {
 
 	private boolean didPlayerWin() {
 		return !(purses[currentPlayer] == 6);
+	}
+
+	public String getWinner() {
+		List<String> winners = new ArrayList<>();
+
+		if (Arrays.stream(purses).max().isPresent()) {
+			Integer maxValue = Arrays.stream(purses).max().getAsInt();
+
+			for ( int i = 0; i<purses.length; i++) {
+				if (purses[i] == maxValue) {
+					winners.add(players.get(i).toString());
+				}
+			}
+		}
+
+		return winners.toString();
+
 	}
 }
