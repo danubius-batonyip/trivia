@@ -1,5 +1,6 @@
 package com.adaptionsoft.games.uglytrivia;
 
+import com.adaptionsoft.games.uglytrivia.exception.TooManyPlayerException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -72,7 +73,7 @@ public class GameTest {
         }
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test(expected = TooManyPlayerException.class)
     public void addTestOver6PlayersFailure() {
         for( int i=0; i<7; i++) {
             game.add(i + "");

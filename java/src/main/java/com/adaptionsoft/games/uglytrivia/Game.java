@@ -1,7 +1,8 @@
 package com.adaptionsoft.games.uglytrivia;
 
+import com.adaptionsoft.games.uglytrivia.exception.TooManyPlayerException;
+
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Game {
 	
@@ -44,7 +45,9 @@ public class Game {
 	}
 
 	public boolean add(String playerName) {
-		
+		if (howManyPlayers() >= 6) {
+			throw new TooManyPlayerException("Maximum 6 players allowed.");
+		}
 		
 	    players.add(playerName);
 	    places[howManyPlayers()-1] = 0;
@@ -124,43 +127,32 @@ public class Game {
 	public boolean wasCorrectlyAnswered() {
 		if (inPenaltyBox[currentPlayer]){
 			if (isGettingOutOfPenaltyBox) {
-				this.output.println("Answer was correct!!!!");
-				purses[currentPlayer]++;
-				this.output.println(players.get(currentPlayer) 
-						+ " now has "
-						+ purses[currentPlayer]
-						+ " Gold Coins.");
-				
-				boolean winner = didPlayerWin();
-				currentPlayer++;
-				if (currentPlayer == players.size()) currentPlayer = 0;
-				
-				return winner;
+				return onCorrectAnswer();
 			} else {
 				currentPlayer++;
 				if (currentPlayer == players.size()) currentPlayer = 0;
 				return true;
 			}
-			
-			
-			
 		} else {
-		
-			this.output.println("Answer was corrent!!!!");
-			purses[currentPlayer]++;
-			this.output.println(players.get(currentPlayer) 
-					+ " now has "
-					+ purses[currentPlayer]
-					+ " Gold Coins.");
-			
-			boolean winner = didPlayerWin();
-			currentPlayer++;
-			if (currentPlayer == players.size()) currentPlayer = 0;
-			
-			return winner;
+			return onCorrectAnswer();
 		}
 	}
-	
+
+	private boolean onCorrectAnswer() {
+		this.output.println("Answer was correct!");
+		purses[currentPlayer]++;
+		this.output.println(players.get(currentPlayer)
+                + " now has "
+                + purses[currentPlayer]
+                + " Gold Coins.");
+
+		boolean winner = didPlayerWin();
+		currentPlayer++;
+		if (currentPlayer == players.size()) currentPlayer = 0;
+
+		return winner;
+	}
+
 	public boolean wrongAnswer(){
 		this.output.println("Question was incorrectly answered");
 		this.output.println(players.get(currentPlayer)+ " was sent to the penalty box");

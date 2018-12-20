@@ -13,7 +13,6 @@ import static org.junit.Assert.*;
 
 public class GameRunnerTest {
 
-    @Test
     public void runTest() throws Exception {
         for ( int i = 0; i < 300; i++) {
             Random random = new Random(i);
