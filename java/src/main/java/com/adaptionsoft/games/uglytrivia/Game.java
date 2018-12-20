@@ -19,8 +19,12 @@ public class Game {
     
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
-    
-    public  Game( Output output ){
+
+	public Game() {
+		this(new GameOutputImpl());
+	}
+
+	public  Game(Output output ){
     	this.output = output;
     	
     	for (int i = 0; i < 50; i++) {

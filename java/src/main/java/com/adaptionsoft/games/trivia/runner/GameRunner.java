@@ -12,8 +12,7 @@ public class GameRunner {
 	private static boolean notAWinner;
 
 	public static void main(String[] args) {
-		Output output = new GameOutputImpl();
-		Game aGame = new Game(output);
+		Game aGame = new Game();
 		
 		aGame.add("Chet");
 		aGame.add("Pat");
