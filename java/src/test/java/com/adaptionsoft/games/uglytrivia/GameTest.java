@@ -11,29 +11,20 @@ import static org.junit.Assert.*;
 
 public class GameTest {
 
-    private ByteArrayOutputStream os;
-    private PrintStream ps2;
+    private Output testOutput;
 
     private Game game;
 
     @Before
     public void init() {
-        this.os = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(os);
-        this.ps2 = System.out;
-
-        System.setOut(ps);
-
-        this.game = new Game();
+        this.testOutput = new TestOutput();
+        this.game = new Game(this.testOutput);
     }
 
     @After
     public void after() {
-        System.out.flush();
-        System.setOut(ps2);
-
         System.out.println("Test out:");
-        System.out.println(os.toString());
+        System.out.println(this.testOutput);
     }
 
     @Test
