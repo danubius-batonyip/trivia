@@ -54,4 +54,26 @@ public class GameTest {
         assertTrue(game.add("Második"));
         assertTrue(game.isPlayable());
     }
+
+    @Test
+    public void howManyPlayersTest() {
+        int initSize = game.howManyPlayers();
+        assertEquals(0,initSize);
+
+        game.add(null);
+
+        assertEquals(initSize + 1, game.howManyPlayers());
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void rollTestWithoutPlayers() {
+        game.roll(-1);
+    }
+
+    @Test
+    public void rollTestWithOnePlayer() {
+        game.add("Julika");
+
+        game.roll(-1);
+    }
 }
