@@ -5,7 +5,7 @@ import org.junit.Test;
 public class GameOutputImplTest {
 
     @Test
-    void printlnTest() {
+    public void printlnTest() {
         Output output = new GameOutputImpl();
         output.println("");
         output.println(null);
