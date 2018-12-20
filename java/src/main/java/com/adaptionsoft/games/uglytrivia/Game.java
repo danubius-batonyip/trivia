@@ -47,9 +47,9 @@ public class Game {
 		
 		
 	    players.add(playerName);
-	    places[howManyPlayers()] = 0;
-	    purses[howManyPlayers()] = 0;
-	    inPenaltyBox[howManyPlayers()] = false;
+	    places[howManyPlayers()-1] = 0;
+	    purses[howManyPlayers()-1] = 0;
+	    inPenaltyBox[howManyPlayers()-1] = false;
 	    
 	    this.output.println(playerName + " was added");
 	    this.output.println("They are player number " + players.size());

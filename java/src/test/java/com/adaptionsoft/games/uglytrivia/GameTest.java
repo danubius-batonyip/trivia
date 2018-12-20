@@ -64,4 +64,18 @@ public class GameTest {
 
         game.roll(-1);
     }
+
+    @Test
+    public void addTestWith6Players() {
+        for( int i=0; i<6; i++) {
+            game.add(i + "");
+        }
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void addTestOver6PlayersFailure() {
+        for( int i=0; i<7; i++) {
+            game.add(i + "");
+        }
+    }
 }
